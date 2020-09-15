@@ -9,7 +9,7 @@ phases:
       - echo "Installing jq..."
       - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
       - echo "Validating centos7-golden.json"
-      - ./packer validate ./centos7-golden.json
+      - ./packer validate centos7/centos7-golden.json
   build:
     commands:
       ### HashiCorp Packer cannot currently obtain the AWS CodeBuild-assigned role and its credentials
@@ -22,7 +22,7 @@ phases:
       - aws configure set aws_secret_access_key `./jq -r '.SecretAccessKey' aws_credentials.json`
       - aws configure set aws_session_token `./jq -r '.Token' aws_credentials.json`
       - echo "Building HashiCorp Packer template, centos7-golden.json"
-      - ./packer build -color=false ./centos7-golden.json | tee build.log
+      - ./packer build -color=false centos7/centos7-golden.json | tee build.log
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
