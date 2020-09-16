@@ -11,8 +11,9 @@ phases:
       - pip --version
       - echo "Installing HashiCorp Packer..."
       - yum install -y yum-utils
-      - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-      - yum -y install packer
+      - yum update -y
+      - wget https://releases.hashicorp.com/packer/1.5.4/packer_1.5.4_linux_amd64.zip
+      - unzip packer_1.5.4_linux_amd64.zip -d /usr/local/bin
       - packer version
       - echo "Installing jq..."
       - echo "Validating centos7-golden.json"
