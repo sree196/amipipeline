@@ -89,13 +89,13 @@
     "aws_ssh_username":"centos",
     "aws_subnet_id":"subnet-0907fddc3ffd022b7",
     "aws_vpc_id":"vpc-0f2be24870e9cb672",
-    "cleanup_script":"./cleanup.sh",
+    "cleanup_script":"cleanup.sh",
     "human_build_time":"{{ isotime \"02-Jan-06 15:04:05\" }}",
     "os_installed":"Centos_7",
     "remote_user":"centos",
     "shell_inline_shebang":"/bin/bash -xe",
-    "install_cloudwatch":"./install-amazon-cloudwatch-agent.sh",
-    "install_chrony":"./install-chrony.sh",
-    "install_ssm":"./install-ssm-agent.sh"
+    "install_cloudwatch":"install-amazon-cloudwatch-agent.sh",
+    "install_chrony":"install-chrony.sh",
+    "install_ssm":"install-ssm-agent.sh"
   }
 }
