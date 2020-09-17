@@ -8,7 +8,6 @@ phases:
       - pip --version
       - echo "Installing HashiCorp Packer..."
       - curl -o packer.zip https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip && unzip packer.zip
-      - unzip packer.zip
       - ./packer version
       - echo "Installing jq..."
       - echo "Validating centos7-golden.json"
