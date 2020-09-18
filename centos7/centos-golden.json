@@ -10,13 +10,12 @@
         "ami_name":"{{ user `aws_ami_name` }}_{{timestamp}}",
         "ami_description":"{{ user `aws_ami_description` }}",
         "associate_public_ip_address":"{{ user `aws_assign_public_ip` }}",
-        "source_ami_filter":{
-            "filters":{
-               "name":"centos"
-            },
-            "owners":[
-               "285398391915"
-            ],
+        "source_ami_filter": {
+          "filters": {
+            "virtualization-type": "hvm",
+            "name": "amzn-ami-hvm-2017.09.*-gp2",
+            "root-device-type": "ebs"
+          },
             "most_recent":true
         },
         "vpc_id":"{{ user `aws_vpc_id` }}",
