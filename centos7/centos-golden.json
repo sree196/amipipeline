@@ -59,15 +59,10 @@
           "sudo mkdir -p /downloads",
           "sudo chmod a+wx /downloads",
           "cd /downloads",
-          "aws s3 cp s3://cx-scripts/install-ssm-agent.sh /downloads",
-          "sudo chmod a+x /downloads/install-ssm-agent.sh",
-          "sudo /downloads/install-ssm-agent.sh",
-          "aws s3 cp s3://cx-scripts/install-amazon-cloudwatch-agent.sh /downloads",
-          "sudo chmod a+x /downloads/install-amazon-cloudwatch-agent.sh",
-          "sudo /downloads/install-amazon-cloudwatch-agent.sh",
-          "aws s3 cp s3://cx-scripts/install-chrony.sh /downloads",
-          "sudo chmod a+x /downloads/install-chrony.sh",
-          "sudo /downloads/install-chrony.sh"
+          "SUDO cd /tmp",
+          "SUDO yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm",
+          "SUDO systemctl start amazon-ssm-agent",
+          "SUDO systemctl enable amazon-ssm-agent"
         ]
       }
     ],
