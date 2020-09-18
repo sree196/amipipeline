@@ -9,9 +9,8 @@ phases:
       - echo "Installing HashiCorp Packer..."
       - curl -o packer.zip https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip && unzip packer.zip
       - ./packer version
-      - echo "Installing jq..."
-      - echo "Validating centos7-golden.json"
-      - cd $CODEBUILD_SRC_DIR/centos7
+      - echo "Validating centos-golden.json"
+      - cd $CODEBUILD_SRC_DIR
       - ls
       - ./packer validate centos-golden.json
   build:
