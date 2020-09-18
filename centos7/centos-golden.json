@@ -59,10 +59,10 @@
           "sudo mkdir -p /downloads",
           "sudo chmod a+wx /downloads",
           "cd /downloads",
-          "SUDO cd /tmp",
-          "SUDO yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm",
-          "SUDO systemctl start amazon-ssm-agent",
-          "SUDO systemctl enable amazon-ssm-agent"
+          "sudo cd /tmp",
+          "sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm",
+          "sudo systemctl start amazon-ssm-agent",
+          "sudo systemctl enable amazon-ssm-agent"
         ]
       }
     ],
