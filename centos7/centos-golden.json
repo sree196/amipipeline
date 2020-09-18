@@ -58,6 +58,12 @@
           "sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm",
           "sudo start amazon-ssm-agent"
         ]
+      },
+      {
+        "type": "shell",
+        "inline": [
+          "rm .ssh/authorized_keys ; sudo rm /root/.ssh/authorized_keys"
+        ]
       }
     ],
     "variables":{
@@ -76,9 +82,6 @@
       "aws_subnet_id":"subnet-0f1e46c8af3484852",
       "aws_vpc_id":"vpc-0f2be24870e9cb672",
       "human_build_time":"{{ isotime \"02-Jan-06 15:04:05\" }}",
-      "iam_instance_profile":"ami-iam_role",
-      "os_installed":"Centos_7",
-      "remote_user":"centos",
       "shell_inline_shebang":"/bin/bash -xe"
     }
   }
