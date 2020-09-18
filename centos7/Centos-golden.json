@@ -1,0 +1,96 @@
+{
+    "builders":[
+      {
+        "type":"amazon-ebs",
+        "access_key":"{{user `aws_access_key`}}",
+        "secret_key":"{{user `aws_secret_key`}}",
+        "instance_type":"{{ user `aws_instance_type` }}",
+        "region":"{{ user `aws_region` }}",
+        "ssh_username":"{{ user `aws_ssh_username` }}",
+        "ami_name":"{{ user `aws_ami_name` }}_{{timestamp}}",
+        "ami_description":"{{ user `aws_ami_description` }}",
+        "associate_public_ip_address":"{{ user `aws_assign_public_ip` }}",
+        "source_ami_filter":{
+            "filters":{
+               "name":"ami-centos-*",
+               "root-device-type":"ebs"
+            },
+            "owners":[
+               "aws-marketplace"
+            ],
+            "most_recent":true
+        },
+        "vpc_id":"{{ user `aws_vpc_id` }}",
+        "security_group_id":"{{ user `aws_security_group_id` }}",
+        "encrypt_boot":"{{ user `aws_encrypt_block_devices` }}",
+        "tags":{
+          "OS_Installed":"{{ user `os_installed` }}",
+          "Build_Time_from_Epoch":"{{timestamp}}",
+          "Build_Date":"{{ user `human_build_time` }}"
+        },
+        "ami_block_device_mappings":[
+          {
+            "device_name":"/dev/sda1",
+            "delete_on_termination":"{{ user `aws_delete_root_vol_on_termination` }}",
+            "volume_type":"{{ user `aws_root_volume_type` }}",
+            "volume_size":"{{ user `aws_root_volume_size` }}"
+          }
+        ],
+        "subnet_id":"{{ user `aws_subnet_id` }}"
+      }
+    ],
+    "min_packer_version":"0.10.0",
+    "description":"Building up a usable packer template",
+    "provisioners":[
+      {
+        "type": "shell",
+        "inline": [
+            "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done"
+        ]
+      },
+      {
+        "type":"shell",
+        "inline": [
+          "sleep 10",
+          "sudo yum -y update",
+          "sudo yum -y install epel-release",
+          "sudo yum -y install awscli",
+          "sudo yum -y install python-pip",
+          "sudo mkdir -p /downloads",
+          "sudo chmod a+wx /downloads",
+          "cd /downloads",
+          "aws s3 cp s3://cx-scripts/install-ssm-agent.sh /downloads",
+          "sudo chmod a+x /downloads/install-ssm-agent.sh",
+          "sudo /downloads/install-ssm-agent.sh",
+          "aws s3 cp s3://cx-scripts/install-amazon-cloudwatch-agent.sh /downloads",
+          "sudo chmod a+x /downloads/install-amazon-cloudwatch-agent.sh",
+          "sudo /downloads/install-amazon-cloudwatch-agent.sh",
+          "aws s3 cp s3://cx-scripts/install-chrony.sh /downloads",
+          "sudo chmod a+x /downloads/install-chrony.sh",
+          "sudo /downloads/install-chrony.sh"
+        ]
+      }
+    ],
+    "variables":{
+      "aws_access_key":"{{env `AWS_ACCESS_KEY_ID`}}",
+      "aws_secret_key":"{{env `AWS_SECRET_ACCESS_KEY`}}",
+      "aws_ami_name":"CISCO",
+      "aws_assign_public_ip":"true",
+      "aws_delete_root_vol_on_termination":"true",
+      "aws_encrypt_block_devices":"false",
+      "aws_instance_type":"t2.medium",
+      "aws_region": "us-west-2",
+      "aws_root_volume_size":"16",
+      "aws_root_volume_type":"gp2",
+      "aws_security_group_id":"sg-08223133ddcabdffc",
+      "aws_ssh_username":"centos",
+      "aws_subnet_id":"subnet-0907fddc3ffd022b7",
+      "aws_vpc_id":"vpc-0f2be24870e9cb672",
+      "cleanup_script":"cleanup.sh",
+      "human_build_time":"{{ isotime \"02-Jan-06 15:04:05\" }}",
+      "iam_instance_profile":"ami-iam_role",
+      "os_installed":"Centos_7",
+      "remote_user":"centos",
+      "shell_inline_shebang":"/bin/bash -xe"
+    }
+  }

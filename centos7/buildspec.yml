@@ -13,14 +13,14 @@ phases:
       - echo "Validating centos7-golden.json"
       - cd $CODEBUILD_SRC_DIR
       - ls
-      - ./packer validate centos7/centos7-golden.json
+      - ./packer validate centos7/centos-golden.json
   build:
     commands:
       ### HashiCorp Packer cannot currently obtain the AWS CodeBuild-assigned role and its credentials
       ### Manually capture and configure the AWS CLI to provide HashiCorp Packer with AWS credentials
       ### More info here: https://github.com/mitchellh/packer/issues/4279
-      - echo "Building HashiCorp Packer template, centos7-golden.json"
-      - packer build -color=false ./amipipeline/centos7/centos7-golden.json | tee build.log
+      - echo "Building HashiCorp Packer template, centos-golden.json"
+      - ./packer build -color=false centos7/centos-golden.json | tee build.log
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
