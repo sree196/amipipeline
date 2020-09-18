@@ -17,7 +17,7 @@
             "root-device-type": "ebs"
           },
           "owners":[
-            "aws-marketplace"
+            "amazon"
          ],
           "most_recent":true
         },
