@@ -78,7 +78,6 @@
       "aws_ssh_username":"ec2-user",
       "aws_subnet_id":"subnet-0f1e46c8af3484852",
       "aws_vpc_id":"vpc-0f2be24870e9cb672",
-      "cleanup_script":"cleanup.sh",
       "human_build_time":"{{ isotime \"02-Jan-06 15:04:05\" }}",
       "iam_instance_profile":"ami-iam_role",
       "os_installed":"Centos_7",
