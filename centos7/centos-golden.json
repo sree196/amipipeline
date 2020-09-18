@@ -84,7 +84,7 @@
       "aws_root_volume_size":"16",
       "aws_root_volume_type":"gp2",
       "aws_security_group_id":"sg-08223133ddcabdffc",
-      "aws_ssh_username":"centos",
+      "aws_ssh_username":"ec2-user",
       "aws_subnet_id":"subnet-0f1e46c8af3484852",
       "aws_vpc_id":"vpc-0f2be24870e9cb672",
       "cleanup_script":"cleanup.sh",
