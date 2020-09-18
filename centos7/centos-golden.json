@@ -56,10 +56,7 @@
           "sudo yum -y update",
           "sudo yum -y install aws-cli",
           "sudo yum -y install python-pip",
-          "sudo mkdir -p /downloads",
-          "sudo chmod a+wx /downloads",
-          "cd /downloads",
-          "sudo cd /tmp",
+          "cd /tmp",
           "sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm",
           "sudo systemctl start amazon-ssm-agent",
           "sudo systemctl enable amazon-ssm-agent"
