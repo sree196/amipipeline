@@ -62,13 +62,7 @@
           "cd /downloads",
           "aws s3 cp s3://cx-scripts/install-ssm-agent.sh /downloads",
           "sudo chmod a+x /downloads/install-ssm-agent.sh",
-          "sudo /downloads/install-ssm-agent.sh",
-          "aws s3 cp s3://cx-scripts/install-amazon-cloudwatch-agent.sh /downloads",
-          "sudo chmod a+x /downloads/install-amazon-cloudwatch-agent.sh",
-          "sudo /downloads/install-amazon-cloudwatch-agent.sh",
-          "aws s3 cp s3://cx-scripts/install-chrony.sh /downloads",
-          "sudo chmod a+x /downloads/install-chrony.sh",
-          "sudo /downloads/install-chrony.sh"
+          "sudo /downloads/install-ssm-agent.sh"
         ]
       }
     ],
