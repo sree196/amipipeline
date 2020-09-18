@@ -12,10 +12,10 @@
         "associate_public_ip_address":"{{ user `aws_assign_public_ip` }}",
         "source_ami_filter":{
             "filters":{
-               "name":"ami-centos-*"
+               "name":"centos"
             },
             "owners":[
-               "aws-marketplace"
+               "285398391915"
             ],
             "most_recent":true
         },
